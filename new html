@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<title>Portfolio Hanna Severin</title>
+</head>
+<body>
+    <header>
+        <a href="#home" class="logo">HA:SE</a>
+
+        <!--HAMBURGER ICON-->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav id="nav">
+            <a href="#home" class="active">Home</a>
+            <a href="#work">My Work</a>
+            <a href="#about">About Me</a>
+            <a href="#contact">Contact Me</a>       
+        </nav>
+    </header>
+  
+    <!--HOME-->
+  
+    <section class="home" id="home">
+        <div class="home-img">
+            <img src="hanna.jpg" alt="Photo of Hanna">  
+        </div>
+        <div class="home-content">
+            <h1>Hanna Severin</h1>
+            <h3 class="typing-text">I'm a <span></span></h3>
+            <p>
+                I'm a digital design student at Yrgo with passion for visual storytelling,
+                clean layouts and playful motion. On this page you'll 
+                find a selection of my work within web, motion and product design.
+            </p>
+        </div>
+    </section>
+
+    <a href="#work" class="down-arrow"></a>
+
+    <!--MY WORK-->
+
+    <section class="work reveal" id="work">
+        <h2 class="section-title">My Work</h2>
+        <div class="work-grid">
+            <article class="work-card">
+                <h3>Infographics VGR Collab</h3>
+                <p>
+                    Getting Started with Digital Healthcare Consultations.
+                </p>
+                <img src="infographic.png" alt="Infographic">
+                <a href="infographics-project.html" class="project-link">Show Project</a>
+            </article>
+            <article class="work-card">
+                <h3>Motion Graphics</h3>
+                <p>
+                    After Effects edits. Transitions, animation and storytelling.
+                </p>
+                <video src="edit01.mov" preload controls></video>
+            </article>
+            <article class="work-card">
+                <h3>FarmQuiz</h3>
+                <p>
+                    Voice-Controlled App for Kids.
+                </p>
+                <img src="farmquiz.png" alt="Farmquiz">
+                <a href="app-design-project.html" class="project-link">Show Project</a>
+            </article>
+        </div>
+    </section>
+
+    <!--ABOUT-->
+
+    <section class="about reveal" id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <p>
+                I'm currently studying Digital Design at Yrgo, 
+                where I'm learning everything from interaction design 
+                and prototyping to motion design and branding.
+            </p>
+            <p>
+                I enjoy combining structured layouts with playful details, 
+                and I love experimenting with typography, 
+                color and subtle animations to make interfaces feel alive.
+            </p>
+            <p>
+                Outside of design I get inspired by photography, music, nature, big cities and culture.
+            </p>
+        </div>
+    </section>
+
+    <!--CONTACT-->
+
+    <section class="contact reveal" id="contact">
+        <h2 class="section-title">Contact Me</h2>
+        <p class="contact-text">
+            Want to collaborate, see more of my work or just say hi?<br>
+            Feel free to reach out:
+        </p>
+        <div class="contact-info">
+            <p><strong>Email:</strong> <a href="mailto:hanna.j.severin@gmail.com">hanna.j.severin@gmail.com</a></p>
+            <p><strong>LinkedIn:</strong> <a href="http://linkedin.com/in/hanna-severin-51aa8923b" target="_blank">hannaseverin</a></p>
+        </div>
+    </section>
+
+    <!--JAVASCRIPT-->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+        hamburger.addEventListener('click',()=>{
+            hamburger.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link=>{
+            link.addEventListener('click',(event)=>{
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
+        const reveals = document.querySelectorAll('.reveal');
+        function handleScrollReveal(){
+            const triggerBottom = window.innerHeight * 0.85;
+            let active = 0;
+            reveals.forEach(el => {
+                const boxTop = 
+                el.getBoundingClientRect().top;
+                if (boxTop < triggerBottom) {
+                    el.classList.add('visible');
+                    active++;
+                } else {
+                    el.classList.remove('visible');
+                }
+            });
+            for (let i = 0; i < navLinks.length; i++) {
+                if (i == active) {
+                    navLinks[i].classList.add('active');
+                } else {
+                    navLinks[i].classList.remove('active');
+                }
+            }
+        }
+        window.addEventListener('scroll', handleScrollReveal);
+        window.addEventListener('load', handleScrollReveal);
+    </script>
+</body>
+</html>
